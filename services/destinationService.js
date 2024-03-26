@@ -1,5 +1,5 @@
-const {Destination} = require('../models/destinationModel');
-const {destinationCompanies} = require('../models/destination_companyModel')
+//const {Destination} = require('../models/destinationModel');
+const {Destination} = require('../models/associations');
 
 //CRUD
 async function createDestination(destination) {
@@ -8,7 +8,11 @@ async function createDestination(destination) {
 
 
 async function getDestinationById(destinationId){
-    const destination = await Destination.findByPk(destinationId);
+    const destination = await Destination.findByPk(destinationId, {
+        include:{
+            model: Companies
+        }
+    });
     return destination.toJSON();
 }
 
