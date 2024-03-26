@@ -12,11 +12,11 @@ const Destination = db.define("Destination", {
     },
     companies: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
-        allowNull: false,
+        /*allowNull: false,
         references: {
             model: 'Company', 
             key: 'id' 
-        }
+        }*/
     }
 }, {
     //timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt

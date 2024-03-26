@@ -9,6 +9,9 @@ const PORT = 3000;
 
 app.use(express.json());
 
+const destinationRoute = require('./routes/destinationRoute.js');
+app.use("/api/v1/destinations", destinationRoute);
+
 db.sync()
 .then(async () => {
     app.listen(PORT, () => {
