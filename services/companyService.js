@@ -1,4 +1,6 @@
-const {Company} = require('../models/companyModel');
+///const {Company} = require('../models/companyModel');
+const {Company} = require('../models/associations');
+
 
 //CRUD
 async function createCompany(company) {
