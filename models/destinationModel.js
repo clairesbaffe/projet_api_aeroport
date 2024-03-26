@@ -1,5 +1,6 @@
 //on importe la db
 const { db } = require('./db');
+const {company} = require('./companyModel')
 
 //on importe l'orm
 const {Sequelize, DataTypes} = require('sequelize');
@@ -12,11 +13,11 @@ const Destination = db.define("Destination", {
     },
     companies: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
-        /*allowNull: false,
+        //allowNull: false,
         references: {
-            model: 'Company', 
+            model: 'Companies', 
             key: 'id' 
-        }*/
+        }
     }
 }, {
     //timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt

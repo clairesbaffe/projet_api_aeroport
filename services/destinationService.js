@@ -1,5 +1,5 @@
 const {Destination} = require('../models/destinationModel');
-
+const {destinationCompanies} = require('../models/destination_companyModel')
 
 //CRUD
 async function createDestination(destination) {
