@@ -10,7 +10,7 @@ const Company = db.define("Company", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    nationnalite:{
+    nationalite:{
         type: DataTypes.STRING,
         allowNull: false
     }
