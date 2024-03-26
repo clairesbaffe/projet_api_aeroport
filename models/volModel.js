@@ -26,12 +26,12 @@ const Vol = db.define("Vol", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    company: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+    compan: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        //allowNull: false,
         references: {
-            model: 'Company', 
-            key: 'id'
+            model: 'Companies', 
+            key: 'id' 
         }
     },
     destinationDepart: {
