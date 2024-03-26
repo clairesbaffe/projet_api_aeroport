@@ -28,4 +28,11 @@ async function getAllVols(criterias = {}){
     return await Vol.findAll({ where });
 }
 
-module.exports = { createVol, getVolById, getAllVols };
+async function deleteVol(volId){
+    const vol = await Vol.findByPk(volId);
+    await vol.destroy();
+    return {datas: {supprime: "vol deleted"}};
+}
+
+
+module.exports = { createVol, getVolById, getAllVols, deleteVol };
