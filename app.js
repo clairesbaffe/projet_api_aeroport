@@ -1,16 +1,19 @@
 const express = require('express');
 const { db } = require('./models/db');
-const vol = require('./controllers/volController');
-const destination = require('./controllers/destinationController')
-const company = require('./controllers/companyController')
+
+const destinationRoute = require('./routes/destinationRoute');
+const companyRoute = require('./routes/companyRoute');
+const volRoute = require('./routes/volRoute');
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-const destinationRoute = require('./routes/destinationRoute.js');
+
 app.use("/api/v1/destinations", destinationRoute);
+app.use("/api/v1/companies", companyRoute);
+app.use("/api/v1/vols", volRoute);
 
 db.sync()
 .then(async () => {
