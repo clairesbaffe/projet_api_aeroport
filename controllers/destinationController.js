@@ -1,0 +1,1 @@
+const destinationService = require('../services/destinationService');
