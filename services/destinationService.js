@@ -45,8 +45,9 @@ async function getAllDestinations(criterias = {}){
 
 async function deleteDestination(destinationId){
     const destination = await Destination.findByPk(destinationId);
+    const nom = destination.nom;
     await destination.destroy();
-    return {datas: {supprime: "destination deleted"}};
+    return {datas: {supprime: `destination ${nom} deleted: ${destinationId}`}};
 }
 
 async function addCompanyToDestination(datas){

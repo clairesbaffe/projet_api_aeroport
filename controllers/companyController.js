@@ -35,7 +35,8 @@ async function createCompany(req, res){
 
 async function deleteCompany(req, res){
     try{
-        const deletedCompany = await companyService.deleteCompany(req.body);
+      const id = req.params.id;
+        const deletedCompany = await companyService.deleteCompany(id);
         res.json(deletedCompany);
     } catch (err){
         res.status(500).json({ message: err.message });

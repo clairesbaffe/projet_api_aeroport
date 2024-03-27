@@ -41,4 +41,13 @@ async function createFlight(req, res) {
   }
 }
 
-module.exports = { getFlightById, getAllFlights, createFlight };
+async function deleteFlight(req, res){
+  try{
+      const id = req.params.id;
+      const deletedFlight = await flightService.deleteFlight(id);
+      res.json(deletedFlight);
+  } catch (err){
+      res.status(500).json({ message: err.message });
+  }
+}
+module.exports = { getFlightById, getAllFlights, createFlight, deleteFlight };

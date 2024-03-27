@@ -36,7 +36,8 @@ async function createDestination(req, res){
 
 async function deleteDestination(req, res){
     try{
-        const deletedDestination = await destinationService.deleteDestination(req.body);
+      const id = req.params.id;
+        const deletedDestination = await destinationService.deleteDestination(id);
         res.json(deletedDestination);
     } catch (err){
         res.status(500).json({ message: err.message });

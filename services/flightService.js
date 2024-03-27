@@ -46,8 +46,9 @@ async function getAllFlights(criterias = {}) {
 
 async function deleteFlight(flightId) {
   const flight = await Flight.findByPk(flightId);
+  const code = flight.code;
   await flight.destroy();
-  return { datas: { supprime: "flight deleted" } };
+  return { datas: { supprime: `flight ${code} deleted: ${flightId}` } };
 }
 
 module.exports = { createFlight, getFlightById, getAllFlights, deleteFlight };
