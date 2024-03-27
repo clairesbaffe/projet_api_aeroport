@@ -7,11 +7,11 @@ const { DataTypes } = require("sequelize");
 const Flight = db.define(
   "Flight",
   {
-    depart: {
+    departureDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    arrivee: {
+    arrivalDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -19,30 +19,14 @@ const Flight = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    terminalDepart: {
+    departureTerminal: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    terminalArrivee: {
+    arrivalTerminal: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    compan: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      //allowNull: false,
-      references: {
-        model: "Companies",
-        key: "id",
-      },
-    },
-    destinationDepart: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    destinationArrivee: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    }
   },
   {
     //timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt
