@@ -55,4 +55,11 @@ async function addCompanyToDestination(datas){
     await destination.addCompany(datas.companyId);
 }
 
-module.exports = {  createDestination, getDestinationById, getAllDestinations, deleteDestination,addCompanyToDestination };
+async function patchDestination(destinationId, datas){
+    const destination = await Destination.findByPk(destinationId);
+    destination.nom = datas.nom;
+    await destination.save();
+    return {datas: {modifie: `destination ${datas.nom} successfully patched`}};
+}
+
+module.exports = {  createDestination, getDestinationById, getAllDestinations, deleteDestination,addCompanyToDestination, patchDestination };

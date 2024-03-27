@@ -45,4 +45,12 @@ async function addDestinationToCompany(datas){
     await company.addDestination(datas.destinationId)
 }
 
-module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany };
+async function patchCompany(companyId, datas){
+    const company = await Company.findByPk(companyId);
+    company.nom = datas.nom;
+    company.nationalite = datas.nationalite;
+    await company.save();
+    return {datas: {modifie: `destination ${datas.nom} successfully patched`}};
+}
+
+module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany, patchCompany };

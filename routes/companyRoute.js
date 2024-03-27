@@ -7,5 +7,6 @@ router.post('/', companyController.createCompany);
 router.get('/:id', companyController.getCompanyById);
 router.post('/destination', companyController.addDestinationToCompany);
 router.delete('/:id', companyController.deleteCompany);
+router.patch('/:id', companyController.patchCompany);
 
 module.exports = router;

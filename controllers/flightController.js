@@ -80,6 +80,16 @@ async function addCompanyToFlight(req, res) {
   }
 }
 
+async function patchFlight(req, res){
+  try{
+    const id = req.params.id;
+    const patched = await flightService.patchFlight(id,req.body);
+    return res.json(patched)
+  } catch (err){
+    res.status(500).json({ message: err.message });
+}
+}
+
 module.exports = {
   getFlightById,
   getAllFlights,
@@ -87,5 +97,6 @@ module.exports = {
   addArrivalDestinationToFlight,
   addDepartureDestinationToFlight,
   addCompanyToFlight,
-  deleteFlight
+  deleteFlight,
+  patchFlight
 };

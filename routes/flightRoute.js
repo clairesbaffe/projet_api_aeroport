@@ -9,5 +9,6 @@ router.post('/', flightController.createFlight);
 router.post('/departure', flightController.addDepartureDestinationToFlight);
 router.post('/arrival', flightController.addArrivalDestinationToFlight);
 router.post('/company', flightController.addCompanyToFlight);
+router.patch('/:id', flightController.patchFlight);
 
 module.exports = router;

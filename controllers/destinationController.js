@@ -54,4 +54,15 @@ async function addCompanyToDestination(req, res){
   }
 }
 
-module.exports = { getDestinationById, getAllDestinations, createDestination, deleteDestination, addCompanyToDestination };
+
+async function patchDestination(req, res){
+  try{
+    const id = req.params.id;
+    const patched = await destinationService.patchDestination(id,req.body);
+    return res.json(patched)
+  } catch (err){
+    res.status(500).json({ message: err.message });
+}
+}
+
+module.exports = { getDestinationById, getAllDestinations, createDestination, deleteDestination, addCompanyToDestination, patchDestination };

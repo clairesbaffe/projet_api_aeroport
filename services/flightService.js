@@ -84,6 +84,17 @@ async function addCompanyToFlight(datas) {
   };
 }
 
+async function patchFlight(flightId, datas){
+  const flight = await Flight.findByPk(flightId);
+  flight.departureDate = datas.departureDate;
+  flight.arrivalDate = datas.arrivalDate;
+  flight.code = datas.code;
+  flight.departureTerminal = datas.departureTerminal;
+  flight.arrivalTerminal = datas.arrivalTerminal;
+  await flight.save();
+  return {datas: {modifie: `destination ${datas.code} successfully patched`}};
+}
+
 module.exports = {
   createFlight,
   getFlightById,
@@ -92,4 +103,5 @@ module.exports = {
   addArrivalDestinationToFlight,
   addDepartureDestinationToFlight,
   addCompanyToFlight,
+  patchFlight
 };
