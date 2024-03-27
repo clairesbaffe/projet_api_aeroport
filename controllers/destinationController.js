@@ -1,5 +1,5 @@
 const destinationService = require('../services/destinationService');
-const companyService = require('../services/companyService')
+//const {addDestinationToCompany} = require('../services/companyService');
 
 async function getDestinationById(req, res) {
     try {
@@ -44,13 +44,13 @@ async function deleteDestination(req, res){
 }
 
 
-async function addDestinationToCompany(req, res){
+async function addCompanyToDestination(req, res){
   try{
-    await companyService.addDestinationToCompany(req);
-    return {datas: {'note': 'Le lien a été fait'}}
+    await destinationService.addCompanyToDestination(req.body);
+    return res.json({ "note": `le lien a été fait` })
   } catch (err){
-    res.status(500).json({ message: err.message });
+      res.status(500).json({ message: err.message });
   }
 }
 
-module.exports = { getDestinationById, getAllDestinations, createDestination, deleteDestination, addDestinationToCompany };
+module.exports = { getDestinationById, getAllDestinations, createDestination, deleteDestination, addCompanyToDestination };
