@@ -17,10 +17,12 @@ async function getAllFlights(criterias = {}) {
   const where = {};
 
   if (criterias.departureDate) {
-    where.depart = criterias.depart;
+    // Renvoie uniquement les vols dont la date et l'heure sont supérieurs à la date recherchée, pour les panneaux d'affichage des départs prochains dans les aéroports par exemple
+    where.departureDate = { [Op.gt]: criterias.departureDate };
   }
   if (criterias.arrivalDate) {
-    where.arrivee = criterias.arrivee;
+    // idem pour les panneaux d'affichage des arrivées prochaines.
+    where.arrivalDate = { [Op.gt]: criterias.arrivalDate };
   }
 
   if (criterias.departureDestinationId) {
