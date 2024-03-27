@@ -34,8 +34,8 @@ async function getAllFlights(req, res) {
 
 async function createFlight(req, res) {
   try {
-    const vol = await flightService.createFlight(req.body);
-    res.json(vol);
+    const flight = await flightService.createFlight(req.body);
+    res.json(flight);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -51,3 +51,40 @@ async function deleteFlight(req, res){
   }
 }
 module.exports = { getFlightById, getAllFlights, createFlight, deleteFlight };
+async function addDepartureDestinationToFlight(req, res) {
+  try {
+    const flight = await flightService.addDepartureDestinationToFlight(
+      req.body
+    );
+    res.json(flight);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function addArrivalDestinationToFlight(req, res) {
+  try {
+    const flight = await flightService.addArrivalDestinationToFlight(req.body);
+    res.json(flight);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function addCompanyToFlight(req, res) {
+  try {
+    const flight = await flightService.addCompanyToFlight(req.body);
+    res.json(flight);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+module.exports = {
+  getFlightById,
+  getAllFlights,
+  createFlight,
+  addArrivalDestinationToFlight,
+  addDepartureDestinationToFlight,
+  addCompanyToFlight,
+};

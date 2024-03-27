@@ -2,13 +2,9 @@ const { Flight } = require("../models/associations");
 const { Company } = require("../models/associations");
 const { Destination } = require("../models/associations");
 
-async function createFlight(flight) {
-  return await Flight.create(flight);
-}
-
 async function getFlightById(id) {
   const include = [];
-  
+
   include.push({ model: Destination, as: "departureDestination" });
   include.push({ model: Destination, as: "arrivalDestination" });
   include.push({ model: Company, as: "company" });
@@ -44,6 +40,10 @@ async function getAllFlights(criterias = {}) {
   return await Flight.findAll({ where, include });
 }
 
+async function createFlight(flight) {
+  return await Flight.create(flight);
+}
+
 async function deleteFlight(flightId) {
   const flight = await Flight.findByPk(flightId);
   const code = flight.code;
@@ -51,4 +51,30 @@ async function deleteFlight(flightId) {
   return { datas: { supprime: `flight ${code} deleted: ${flightId}` } };
 }
 
-module.exports = { createFlight, getFlightById, getAllFlights, deleteFlight };
+async function addDepartureDestinationToFlight(datas) {
+  const flight = await Flight.findByPk(datas.flightId);
+  flight.departureDestinationId = datas.destinationId;
+  await flight.save();
+}
+
+async function addArrivalDestinationToFlight(datas) {
+  const flight = await Flight.findByPk(datas.flightId);
+  flight.arrivalDestinationId = datas.destinationId;
+  await flight.save();
+}
+
+async function addCompanyToFlight(datas) {
+  const flight = await Flight.findByPk(datas.flightId);
+  flight.companyId = datas.companyId;
+  await flight.save();
+}
+
+module.exports = {
+  createFlight,
+  getFlightById,
+  getAllFlights,
+  deleteFlight,
+  addArrivalDestinationToFlight,
+  addDepartureDestinationToFlight,
+  addCompanyToFlight,
+};
