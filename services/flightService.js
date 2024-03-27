@@ -46,8 +46,9 @@ async function createFlight(flight) {
 
 async function deleteFlight(flightId) {
   const flight = await Flight.findByPk(flightId);
+  const code = flight.code;
   await flight.destroy();
-  return { datas: { supprime: "flight deleted" } };
+  return { datas: { supprime: `flight ${code} deleted: ${flightId}` } };
 }
 
 async function addDepartureDestinationToFlight(datas) {

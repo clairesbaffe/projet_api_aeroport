@@ -29,8 +29,9 @@ async function getAllCompanies(criterias = {}){
 
 async function deleteCompany(companyId){
     const company = await Company.findByPk(companyId);
+    const nom = company.nom;
     await company.destroy();
-    return {datas: {supprime: "company deleted"}};
+    return {datas: {supprime: `company ${nom} deleted: ${companyId}`}};
 }
 
 async function addDestinationToCompany(datas){

@@ -22,7 +22,7 @@ db.sync()
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}`)
         // addDestinationToCompany(1, 2);
-        // addDestinationToCompany(2, 1);
+        // // addDestinationToCompany(2, 1);
         // addCompanyToDestination({
         //     "destinationId": 2,
         //     "companyId": 1
