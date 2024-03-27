@@ -17,14 +17,14 @@ async function getFlightById(req, res) {
 
 async function getAllFlights(req, res) {
   try {
-    const { destinationDepart, destinationArrivee, depart, arrivee, compagny } =
+    const { departureDate, arrivalDate, departureDestinationId, arrivalDestinationId, company } =
       req.query;
     const flights = await flightService.getAllFlights({
-      destinationDepart,
-      destinationArrivee,
-      depart,
-      arrivee,
-      compagny,
+      departureDate,
+      arrivalDate,
+      departureDestinationId,
+      arrivalDestinationId,
+      company,
     });
     res.json(flights);
   } catch (error) {
@@ -37,7 +37,7 @@ async function createFlight(req, res) {
     const flight = await flightService.createFlight(req.body);
     res.json(flight);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Flight creation failed" });
   }
 }
 
@@ -51,41 +51,9 @@ async function deleteFlight(req, res){
   }
 }
 
-async function addDepartureDestinationToFlight(req, res) {
-  try {
-    const flight = await flightService.addDepartureDestinationToFlight(
-      req.body
-    );
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find destination or flight" });
-  }
-}
-
-async function addArrivalDestinationToFlight(req, res) {
-  try {
-    const flight = await flightService.addArrivalDestinationToFlight(req.body);
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find destination or flight" });
-  }
-}
-
-async function addCompanyToFlight(req, res) {
-  try {
-    const flight = await flightService.addCompanyToFlight(req.body);
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find company or flight" });
-  }
-}
-
 module.exports = {
   getFlightById,
   getAllFlights,
   createFlight,
-  addArrivalDestinationToFlight,
-  addDepartureDestinationToFlight,
-  addCompanyToFlight,
   deleteFlight
 };

@@ -17,10 +17,12 @@ async function getAllFlights(criterias = {}) {
   const where = {};
 
   if (criterias.departureDate) {
-    where.depart = criterias.depart;
+    // Renvoie uniquement les vols dont la date et l'heure sont supérieurs à la date recherchée, pour les panneaux d'affichage des départs prochains dans les aéroports par exemple
+    where.departureDate = { [Op.gt]: criterias.departureDate };
   }
   if (criterias.arrivalDate) {
-    where.arrivee = criterias.arrivee;
+    // idem pour les panneaux d'affichage des arrivées prochaines.
+    where.arrivalDate = { [Op.gt]: criterias.arrivalDate };
   }
 
   if (criterias.departureDestinationId) {
@@ -51,45 +53,9 @@ async function deleteFlight(flightId) {
   return { datas: { supprime: `flight ${code} deleted: ${flightId}` } };
 }
 
-async function addDepartureDestinationToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.departureDestinationId = datas.destinationId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added departure destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
-async function addArrivalDestinationToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.arrivalDestinationId = datas.destinationId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added arrival destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
-async function addCompanyToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.companyId = datas.companyId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added company ${datas.companyId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
 module.exports = {
   createFlight,
   getFlightById,
   getAllFlights,
   deleteFlight,
-  addArrivalDestinationToFlight,
-  addDepartureDestinationToFlight,
-  addCompanyToFlight,
 };
