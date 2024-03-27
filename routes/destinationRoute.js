@@ -5,7 +5,7 @@ const destinationController = require('../controllers/destinationController');
 router.get("/", destinationController.getAllDestinations);
 router.post('/', destinationController.createDestination);
 router.get('/:id', destinationController.getDestinationById);
-router.post("/companies", destinationController.addDestinationToCompany);
+router.post("/companies", destinationController.addCompanyToDestination);
 //router.post('/:id', destinationController.deleteDestination);
 
 module.exports = router;
