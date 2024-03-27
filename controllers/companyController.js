@@ -45,7 +45,7 @@ async function deleteCompany(req, res){
 async function addDestinationToCompany(req, res){
   try{
     await companyService.addDestinationToCompany(req.body);
-    return {datas: {'note': 'Le lien a été fait'}}
+    return res.json({ "note": `le lien a été fait` })
   } catch (err){
     res.status(500).json({ message: err.message });
   }

@@ -33,9 +33,9 @@ async function deleteCompany(companyId){
     return {datas: {supprime: "company deleted"}};
 }
 
-async function addDestinationToCompany(destinationId, companyId){
-    const company = await Company.findByPk(companyId);
-    await company.addDestination(destinationId)
+async function addDestinationToCompany(datas){
+    const company = await Company.findByPk(datas.companyId);
+    await company.addDestination(datas.destinationId)
 }
 
 module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany };

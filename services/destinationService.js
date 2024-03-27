@@ -49,4 +49,9 @@ async function deleteDestination(destinationId){
     return {datas: {supprime: "destination deleted"}};
 }
 
-module.exports = {  createDestination, getDestinationById, getAllDestinations, deleteDestination };
+async function addCompanyToDestination(datas){
+    const destination = await Destination.findByPk(datas.destinationId);
+    await destination.addCompany(datas.companyId);
+}
+
+module.exports = {  createDestination, getDestinationById, getAllDestinations, deleteDestination,addCompanyToDestination };
