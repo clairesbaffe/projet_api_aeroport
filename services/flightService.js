@@ -7,7 +7,13 @@ async function createFlight(flight) {
 }
 
 async function getFlightById(id) {
-  return await Flight.findByPk(id);
+  const include = [];
+  
+  include.push({ model: Destination, as: "departureDestination" });
+  include.push({ model: Destination, as: "arrivalDestination" });
+  include.push({ model: Company, as: "company" });
+
+  return await Flight.findByPk(id, { include });
 }
 
 async function getAllFlights(criterias = {}) {
@@ -31,10 +37,9 @@ async function getAllFlights(criterias = {}) {
     where.company = criterias.company;
   }
 
-  include.push({ model: Destination, as: 'departureDestination' });
-  include.push({ model: Destination, as: 'arrivalDestination' });
-  include.push({ model: Company, as: 'company' });
-
+  include.push({ model: Destination, as: "departureDestination" });
+  include.push({ model: Destination, as: "arrivalDestination" });
+  include.push({ model: Company, as: "company" });
 
   return await Flight.findAll({ where, include });
 }
