@@ -1,5 +1,5 @@
 ///const {Company} = require('../models/companyModel');
-const {Company} = require('../models/associations');
+const {Company, Destination} = require('../models/associations');
 
 
 //CRUD
@@ -33,4 +33,9 @@ async function deleteCompany(companyId){
     return {datas: {supprime: "company deleted"}};
 }
 
-module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany };
+async function addDestinationToCompany(destinationId, companyId){
+    const company = await Company.findByPk(companyId);
+    await company.addDestination(destinationId)
+}
+
+module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany };

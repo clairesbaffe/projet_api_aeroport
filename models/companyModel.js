@@ -15,6 +15,7 @@ const Company = db.define("Company", {
         allowNull: false
     }
 }, {
+    timestamps: false
 })
 
 module.exports = { Company };

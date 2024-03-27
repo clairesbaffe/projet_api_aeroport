@@ -4,6 +4,7 @@ const { db } = require('./models/db');
 const destinationRoute = require('./routes/destinationRoute');
 const companyRoute = require('./routes/companyRoute');
 const flightRoute = require('./routes/flightRoute');
+const {addDestinationToCompany} = require('./services/companyService');
 
 const app = express();
 const PORT = 3000;
@@ -19,5 +20,8 @@ db.sync()
 .then(async () => {
     app.listen(PORT, () => {
         console.log(`Server running on http://localhost:${PORT}`)
+        addDestinationToCompany(1, 2);
+        addDestinationToCompany(2, 1);
+    
     })
 });

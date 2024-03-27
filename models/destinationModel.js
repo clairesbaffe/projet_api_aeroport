@@ -10,17 +10,16 @@ const Destination = db.define("Destination", {
     nom: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    companies: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        //allowNull: false,
-        references: {
-            model: 'Companies', 
-            key: 'id' 
-        }
     }
 }, {
-    //timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt
+    timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt
 })
+
+Destination.associate = (models) => {
+    Destination.belongsTo(models.company, {
+        as: "destinationCompanies",
+        foreignKey: 'id'
+    })
+}
 
 module.exports = { Destination };

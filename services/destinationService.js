@@ -1,5 +1,6 @@
-//const {Destination} = require('../models/destinationModel');
 const {Destination} = require('../models/associations');
+const {Company} = require('../models/associations');
+
 
 //CRUD
 async function createDestination(destination) {
@@ -8,11 +9,7 @@ async function createDestination(destination) {
 
 
 async function getDestinationById(destinationId){
-    const destination = await Destination.findByPk(destinationId, {
-        include:{
-            model: Companies
-        }
-    });
+    const destination = await Destination.findByPk(destinationId);
     return destination.toJSON();
 }
 
@@ -27,7 +24,16 @@ async function getAllDestinations(criterias = {}){
     if(criterias.company){
         where.company = criterias.company;
     }
-    return await Destination.findAll({where});
+    
+    return await Destination.findAll({
+        where,
+        include: [
+            {
+                through: "DestinationCompany",
+                model: Company
+            }
+        ]
+    });
 }
 
 async function deleteDestination(destinationId){
