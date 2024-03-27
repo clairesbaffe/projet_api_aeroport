@@ -55,18 +55,33 @@ async function addDepartureDestinationToFlight(datas) {
   const flight = await Flight.findByPk(datas.flightId);
   flight.departureDestinationId = datas.destinationId;
   await flight.save();
+  return {
+    datas: {
+      updated: `Added departure destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
+    },
+  };
 }
 
 async function addArrivalDestinationToFlight(datas) {
   const flight = await Flight.findByPk(datas.flightId);
   flight.arrivalDestinationId = datas.destinationId;
   await flight.save();
+  return {
+    datas: {
+      updated: `Added arrival destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
+    },
+  };
 }
 
 async function addCompanyToFlight(datas) {
   const flight = await Flight.findByPk(datas.flightId);
   flight.companyId = datas.companyId;
   await flight.save();
+  return {
+    datas: {
+      updated: `Added company ${datas.companyId} to flight ${flight.code} (id: ${datas.flightId})`,
+    },
+  };
 }
 
 module.exports = {
