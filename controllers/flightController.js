@@ -50,7 +50,7 @@ async function deleteFlight(req, res){
       res.status(500).json({ message: err.message });
   }
 }
-module.exports = { getFlightById, getAllFlights, createFlight, deleteFlight };
+
 async function addDepartureDestinationToFlight(req, res) {
   try {
     const flight = await flightService.addDepartureDestinationToFlight(
@@ -87,4 +87,5 @@ module.exports = {
   addArrivalDestinationToFlight,
   addDepartureDestinationToFlight,
   addCompanyToFlight,
+  deleteFlight
 };

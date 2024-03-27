@@ -23,7 +23,13 @@ async function getAllCompanies(criterias = {}){
     if(criterias.nationalite){
         where.nationalite = criterias.nationalite;
     }
-    return await Company.findAll({where});
+    return await Company.findAll({where,
+        include: [
+            {
+                through: "DestinationCompany",
+                model: Destination
+            }
+        ]});
     
 }
 
