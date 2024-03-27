@@ -42,4 +42,13 @@ async function deleteCompany(req, res){
     }
 }
 
-module.exports = { getCompanyById, getAllCompanies, createCompany, deleteCompany };
+async function addDestinationToCompany(req, res){
+  try{
+    await companyService.addDestinationToCompany(req);
+    return {datas: {'note': 'Le lien a été fait'}}
+  } catch (err){
+    res.status(500).json({ message: err.message });
+  }
+}
+
+module.exports = { getCompanyById, getAllCompanies, createCompany, deleteCompany, addDestinationToCompany };

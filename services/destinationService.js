@@ -9,7 +9,14 @@ async function createDestination(destination) {
 
 
 async function getDestinationById(destinationId){
-    const destination = await Destination.findByPk(destinationId);
+    const destination = await Destination.findByPk(destinationId, {
+        include: [
+            {
+                through: "DestinationCompany",
+                model: Company
+            }
+        ]
+    });
     return destination.toJSON();
 }
 
