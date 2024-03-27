@@ -48,7 +48,7 @@ async function addDepartureDestinationToFlight(req, res) {
     );
     res.json(flight);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Failed to find destination or flight" });
   }
 }
 
@@ -57,7 +57,7 @@ async function addArrivalDestinationToFlight(req, res) {
     const flight = await flightService.addArrivalDestinationToFlight(req.body);
     res.json(flight);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Failed to find destination or flight" });
   }
 }
 
@@ -66,7 +66,7 @@ async function addCompanyToFlight(req, res) {
     const flight = await flightService.addCompanyToFlight(req.body);
     res.json(flight);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Failed to find company or flight" });
   }
 }
 
