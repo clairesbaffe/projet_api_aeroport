@@ -51,35 +51,6 @@ async function deleteFlight(req, res){
   }
 }
 
-async function addDepartureDestinationToFlight(req, res) {
-  try {
-    const flight = await flightService.addDepartureDestinationToFlight(
-      req.body
-    );
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find destination or flight" });
-  }
-}
-
-async function addArrivalDestinationToFlight(req, res) {
-  try {
-    const flight = await flightService.addArrivalDestinationToFlight(req.body);
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find destination or flight" });
-  }
-}
-
-async function addCompanyToFlight(req, res) {
-  try {
-    const flight = await flightService.addCompanyToFlight(req.body);
-    res.json(flight);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to find company or flight" });
-  }
-}
-
 async function patchFlight(req, res){
   try{
     const id = req.params.id;
@@ -94,9 +65,6 @@ module.exports = {
   getFlightById,
   getAllFlights,
   createFlight,
-  addArrivalDestinationToFlight,
-  addDepartureDestinationToFlight,
-  addCompanyToFlight,
   deleteFlight,
   patchFlight,
   deleteFlight

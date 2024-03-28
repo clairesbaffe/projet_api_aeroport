@@ -53,39 +53,6 @@ async function deleteFlight(flightId) {
   return { datas: { supprime: `flight ${code} deleted: ${flightId}` } };
 }
 
-async function addDepartureDestinationToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.departureDestinationId = datas.destinationId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added departure destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
-async function addArrivalDestinationToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.arrivalDestinationId = datas.destinationId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added arrival destination ${datas.destinationId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
-async function addCompanyToFlight(datas) {
-  const flight = await Flight.findByPk(datas.flightId);
-  flight.companyId = datas.companyId;
-  await flight.save();
-  return {
-    datas: {
-      updated: `Added company ${datas.companyId} to flight ${flight.code} (id: ${datas.flightId})`,
-    },
-  };
-}
-
 async function patchFlight(flightId, datas){
   const flight = await Flight.findByPk(flightId);
   flight.departureDate = datas.departureDate;
@@ -93,6 +60,9 @@ async function patchFlight(flightId, datas){
   flight.code = datas.code;
   flight.departureTerminal = datas.departureTerminal;
   flight.arrivalTerminal = datas.arrivalTerminal;
+  flight.departureDestinationId = datas.departureDestinationId;
+  flight.arrivalDestinationId = datas.arrivalDestinationId;
+  flight.companyId = datas.companyId;
   await flight.save();
   return {datas: {modifie: `destination ${datas.code} successfully patched`}};
 }
@@ -102,8 +72,5 @@ module.exports = {
   getFlightById,
   getAllFlights,
   deleteFlight,
-  addArrivalDestinationToFlight,
-  addDepartureDestinationToFlight,
-  addCompanyToFlight,
   patchFlight
 };
