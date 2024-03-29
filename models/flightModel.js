@@ -29,7 +29,7 @@ const Flight = db.define(
     }
   },
   {
-    //timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt
+    //timestamps: false,
   }
 );
 

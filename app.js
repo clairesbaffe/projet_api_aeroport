@@ -4,8 +4,6 @@ const { db } = require('./models/db');
 const destinationRoute = require('./routes/destinationRoute');
 const companyRoute = require('./routes/companyRoute');
 const flightRoute = require('./routes/flightRoute');
-const {addDestinationToCompany} = require('./services/companyService');
-const { addCompanyToDestination } = require('./services/destinationService');
 
 const app = express();
 const PORT = 3000;

@@ -12,7 +12,7 @@ const Destination = db.define("Destination", {
         allowNull: false
     }
 }, {
-    timestamps: false, //pour dire a sequelize de ne pas créer de colonnes createdAt et updatedAt
+    timestamps: false,
 })
 
 Destination.associate = (models) => {

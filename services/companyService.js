@@ -1,4 +1,3 @@
-///const {Company} = require('../models/companyModel');
 const {Company, Destination} = require('../models/associations');
 
 

@@ -1,5 +1,4 @@
 const destinationService = require('../services/destinationService');
-//const {addDestinationToCompany} = require('../services/companyService');
 
 async function getDestinationById(req, res) {
     try {
