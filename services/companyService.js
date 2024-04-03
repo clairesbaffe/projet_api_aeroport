@@ -52,4 +52,10 @@ async function patchCompany(companyId, datas){
     return {datas: {modifie: `destination ${datas.nom} successfully patched`}};
 }
 
-module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany, patchCompany };
+async function removeDestinationToCompany(datas){
+    const company = await Company.findByPk(datas.companyId);
+    await company.removeDestination(datas.destinationId);
+    return {supprime: "la liaison a été supprimée avec succès"}
+}
+
+module.exports = {  createCompany, getCompanyById, getAllCompanies, deleteCompany, addDestinationToCompany, patchCompany, removeDestinationToCompany };

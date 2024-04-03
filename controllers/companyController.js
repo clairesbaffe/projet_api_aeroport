@@ -62,5 +62,13 @@ async function patchCompany(req, res) {
   }
 }
 
+async function removeDestinationToCompany(req, res){
+  try{
+    const liaison = await companyService.removeDestinationToCompany(req.body);
+    return res.json(liaison)
+  } catch (err){
+      res.status(500).json({ message: err.message });
+  }
+}
 
-module.exports = { getCompanyById, getAllCompanies, createCompany, deleteCompany, addDestinationToCompany, patchCompany };
+module.exports = { getCompanyById, getAllCompanies, createCompany, deleteCompany, addDestinationToCompany, patchCompany, removeDestinationToCompany };
