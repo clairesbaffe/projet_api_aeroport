@@ -8,5 +8,6 @@ router.get('/:id', destinationController.getDestinationById);
 router.post("/companies", destinationController.addCompanyToDestination);
 router.delete('/:id', destinationController.deleteDestination);
 router.patch('/:id', destinationController.patchDestination);
+router.delete('/companies/remove', destinationController.removeCompanyToDestination);
 
 module.exports = router;
