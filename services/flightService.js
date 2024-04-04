@@ -2,6 +2,8 @@ const { Flight } = require("../models/associations");
 const { Company } = require("../models/associations");
 const { Destination } = require("../models/associations");
 
+const { Op } = require('sequelize');
+
 async function getFlightById(id) {
   const include = [];
 
